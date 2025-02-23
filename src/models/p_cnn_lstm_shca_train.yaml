@@ -1,0 +1,27 @@
+model:
+  model_name: "P_CNN_LSTM_SHCA"
+
+data:
+  train:
+    datasets:
+      - dataset_name: "artmv"
+        dataset_path: "hrnet_25fps"
+        shuffle: True
+        seed: 42
+
+training:
+  k_fold: 5
+  save_steps: 10
+  num_train_epochs: 30
+  batch_size: 64
+  per_device_eval_batch_size: 4
+
+  optimizer: "adam"
+  learning_rate: 1.0e-03
+  weight_decay: 0.1
+  max_grad_norm: 20
+
+  logging_steps: 10
+  log_model_summary: True
+  include_performance_metrics: True
+  output_dir: "output/p_cnn_lstm_shca.pth"
