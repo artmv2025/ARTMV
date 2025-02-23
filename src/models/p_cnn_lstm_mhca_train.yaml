@@ -1,6 +1,6 @@
 model:
-  model_name: "P_CNN_LSTM_SHCA"
-  num_attention_heads: 1
+  model_name: "P_CNN_LSTM_MHCA"
+  num_attention_heads: 2
 
 data:
   train:
@@ -25,4 +25,4 @@ training:
   logging_steps: 10
   log_model_summary: True
   include_performance_metrics: True
-  output_dir: "output/p_cnn_lstm_shca.pth"
+  output_dir: "output/p_cnn_lstm_mhca.pth"
