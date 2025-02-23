@@ -87,15 +87,15 @@ class CNNLSTMBlock(nn.Module):
     
 
 class P_CNN_LSTM_SHCA(nn.Module):
-    def __init__(self, input_dim, kernel_size_1, kernel_size_2, filter_num, num_heads=1, lstm_network='StackedLSTM'):
+    def __init__(self, input_dim_R, input_dim_L, input_dim_M, kernel_size_1, kernel_size_2, filter_num, num_heads=1, lstm_network='StackedLSTM'):
         super(P_CNN_LSTM_SHCA, self).__init__()
         
         self.joint_separator = JointSeparator()
         
         # CNN-LSTM blocks for different joint groups
-        self.cnn_lstm_left = CNNLSTMBlock(input_dim, kernel_size_1, kernel_size_2, filter_num, 96, lstm_network)
-        self.cnn_lstm_right = CNNLSTMBlock(input_dim, kernel_size_1, kernel_size_2, filter_num, 96, lstm_network)
-        self.cnn_lstm_mid = CNNLSTMBlock(input_dim, kernel_size_1, kernel_size_2, filter_num, 32, lstm_network)
+        self.cnn_lstm_left = CNNLSTMBlock(input_dim_L, kernel_size_1, kernel_size_2, filter_num, 96, lstm_network)
+        self.cnn_lstm_right = CNNLSTMBlock(input_dim_R, kernel_size_1, kernel_size_2, filter_num, 96, lstm_network)
+        self.cnn_lstm_mid = CNNLSTMBlock(input_dim_M, kernel_size_1, kernel_size_2, filter_num, 32, lstm_network)
         
         # Attention layers
         self.right_attention_layer = Cross_Attention(256, 256, num_heads=num_heads)
