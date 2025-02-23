@@ -14,7 +14,6 @@ training:
   save_steps: 10
   num_train_epochs: 30
   batch_size: 64
-  per_device_eval_batch_size: 4
 
   optimizer: "adam"
   learning_rate: 1.0e-03
