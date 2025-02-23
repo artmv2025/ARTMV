@@ -3,6 +3,9 @@ import torch.nn as nn
 import math
 import torch.nn.functional as F
 import JointSeparator from joint_seperator
+import SelfAttention from attention_layers
+import CrossAttention from attention_layers
+
 
 class CNNBlock(nn.Module):
     def __init__(self, input_dim, kernel_size_1, kernel_size_2, num_filters=32):
@@ -98,9 +101,9 @@ class P_CNN_LSTM_SHCA(nn.Module):
         self.cnn_lstm_mid = CNNLSTMBlock(input_dim_M, kernel_size_1, kernel_size_2, filter_num, 32, lstm_network)
         
         # Attention layers
-        self.right_attention_layer = Cross_Attention(256, 256, num_heads=num_heads)
-        self.left_attention_layer = Cross_Attention(256, 256, num_heads=num_heads)
-        self.mid_attention_layer = Self_Attention(256, num_heads=num_heads)
+        self.right_attention_layer = CrossAttention(256, 256, num_heads=num_heads)
+        self.left_attention_layer = CrossAttention(256, 256, num_heads=num_heads)
+        self.mid_attention_layer = SelfAttention(256, num_heads=num_heads)
         
         self.fc = nn.LazyLinear(1)
         
