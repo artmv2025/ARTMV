@@ -89,7 +89,7 @@ class CNNLSTMBlock(nn.Module):
         return out
     
 
-class P_CNN_LSTM_SHCA(nn.Module):
+class HRNetCNNLSTMSHCA(nn.Module):
     def __init__(self, input_dim_R, input_dim_L, input_dim_M, kernel_size_1, kernel_size_2, filter_num, num_heads=1, lstm_network='StackedLSTM'):
         super(P_CNN_LSTM_SHCA, self).__init__()
         
